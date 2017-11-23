@@ -1,30 +1,67 @@
 #include <stdio.h>
-#include <math.h>
+
+void wczytaj(double *a1, double *b1, double *c1, double *a2, double *b2, double *c2)/* co to gwiazdka- nie wie nikt */
+{
+        puts("Podaj wspolczynnik a1"); scanf("%lf", a1); /*put wyświetla tekst, %lf to zmienna rzeczywista,  */
+        puts("Podaj wspolczynnik b1"); scanf("%lf", b1);
+        puts("Podaj wspolczynnik c1"); scanf("%lf", c1);
+        puts("Podaj wspolczynnik a2"); scanf("%lf", a2);
+        puts("Podaj wspolczynnik b2"); scanf("%lf", b2);
+        puts("Podaj wspolczynnik c2"); scanf("%lf", c2);
+}
+/* to powyzej trzeba wczytac do funkcji void wczytaj pod #include */
 
 
+        double wyznacznik_glowny(double a1, double a2, double b1, double b2)
+{       return a1*b1 - a2*b1;
+}
+        double wyznacznik_x(double c1, double c2, double b1, double b2)
+{       return c1*b2 - c2*b1;
+}
+        double wyznacznik_y(double a1, double a2, double c1, double c2)
+{        return a1*c2 - a2*c1;
+
+}
 
 int main()
 
 {
-	puts("Układ równań metoda wyznacznikow");
-	float a1,b1,c1,a2,b2,c2;
-	printf("Podaj wartość argumentu a1: "); scanf("%f", &a1);
-	printf("Podaj wartość argumentu b1: "); scanf("%f", &b1);
-	printf("Podaj wartość argumentu c1: "); scanf("%f", &c1);
-        printf("Podaj wartosc argumentu a2: "); scanf("%f", &a2);
-//	delta=(b*b)-(4*a*c);
-//	if(a==0){puts("Aby rowananie bylo kwadratowe 'a' musi być RÓŻNE od zera!");}
-//	else{
-//		if(delta>0){
-//			pdelta=sqrt(delta);
-//			printf("Równanie ma dwa rozwiązania: x1=%.2f x2=%.2f\n", (-b-pdelta)/(2*a),(-b+pdelta)/(2*a));}
-//			else if(delta==0){printf("Równanie na jedno rozwiązanie: x=%.2f\n", -b/(2*a));}
-//			else if(delta<0){printf("Równanie nie ma rozwiązań rzeczywistych!\n");}
+
+        double a1, b1, c1, a2,b2, c2; /* to inicjuje zmienne */ 
+        double W, Wx, Wy;
+        double x,y;
+
+        wczytaj(&a1, &b1,&c1,&a2,&b2,&c2); 
+
+        /* po wczytaniu zmiennych a1,b1, c1, a2, b2, c2 określamy wyznaczniki( układ róœnań)*/
+
+	W = wyznacznik_glowny(a1, b1, a2, b2);
+	Wx = wyznacznik_x(c1, c2, b1, b2);
+	Wy = wyznacznik_y(a1, a2, c1, c2); /*potem tworzymy jakby zadania np weź zmienne a1, b1 itd i zwróć operację a1*b1 itd -- potem to przenieś pod pierwszy blok*/ 
+        x = Wx / W;
+        y= Wy / W;
+
+        printf("x = %lf\ny= %lf\n", x, y );
+        
 
 
-		}
+
 return 0;
-
 }
+
+//	double wyznacznik_glowny(double a1, double a2, double b1, double b2)
+//{	return a1*b1 - a2*b1;
+//}
+//	double wyznacznik_x(double c1, double c2, double b1, double b2)
+//{	return c1*b2 - c2*b1;
+//}
+//	double wyznacznik_y(double a1, double a2, double c1, double c2)
+//{	return a1*c2 - a2*c1;
+//}
+
+
+
+
+
 
 
